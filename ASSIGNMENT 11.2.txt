@@ -1,0 +1,58 @@
+9) SELECT CUSTOMER.CUSTOMER_ID,CUSTOMER.FIRST_NAME,MAX(AMOUNT)
+FROM CUSTOMER JOIN PAYMENT USING
+(CUSTOMER_ID) JOIN RENTAL USING
+(RENTAL_ID);
+	CUSTOMER_ID	FIRST_NAME	MAX(AMOUNT)
+	130		CHARLOTTE		11.99
+10) WHICH CATEGORY OF FILM IS LONGER THAN THE AVERAGE LENGTH OF THE FILM?Return the
+category name and it's average length.
+SELECT CATEGORY.NAME,AVG(LENGTH) FROM FILM JOIN
+FILM_CATEGORY USING
+(FILM_ID) JOIN CATEGORY USING
+(CATEGORY_ID)
+GROUP BY CATEGORY.NAME
+HAVING AVG(LENGTH)>(SELECT AVG(LENGTH) FROM FILM)
+ORDER BY AVG(LENGTH) DESC;
+	NAME	AVG(LENGTH)
+	Sports	128.2027
+	Games	127.8361
+	Foreign	121.6986
+	Drama	120.8387
+	Comedy	115.8276
+SELECT AVG(LENGTH) FROM FILM;
+	AVG(LENGTH)
+	115.2720
+* The average length of a film is 115.2720.
+*first we should find a film which has length which is more than average length of the film.
+* and then find the film's category.
+* Here I used  2 joins. I joined FILM_CATEGORY table with Category by using common field FILM_ID. And joined
+CATEGORY table using common field CATEGORY_ID.
+*This will return the name of the category with it's average length.
+*To return the average length for each film category, I used GROUP BY clause and HAVING clause.
+*HAVING clause provides the condition that the average length of the film that belongs to a category should be greater than
+the average length of the film.
+* I used the AVG() aggregate function.
+* This compares itself with the Subquery which selects average length of the film.
+* The result should be ordered in descending order of average length per category.
+
+
+
+
+*
+
+
+*
+
+*
+
+
+
+
+
+
+
+
+
+
+
+
